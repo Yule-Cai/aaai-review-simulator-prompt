@@ -57,3 +57,11 @@ prompts/aaai_review_compact_zh.md
 不要根据一次模型评审就决定投稿或放弃。  
 不要让模型编造“某 reviewer 会怎么想”。  
 不要用它替代真实导师、合作者或领域专家的判断。
+
+## 直接复制 Prompt
+
+现在有三种复制方式：
+
+1. 在 `README.md` 的 **Quick Copy** 区域展开对应 prompt，然后复制代码块。
+2. 打开 `COPY_PROMPTS.md`，里面把所有 prompt 都放成了可复制代码块。
+3. 打开 `docs/index.html`，使用网页按钮 **Copy Prompt**。本地双击可以用；上传 GitHub 后也可以通过 GitHub Pages 发布。

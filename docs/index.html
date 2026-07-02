@@ -1,55 +1,46 @@
-<h1 align="center">AAAI-Review-Simulator</h1>
-
-<p align="center">
-  <b>Unofficial AAAI-style multi-reviewer prompt for strict paper self-assessment, meta-review simulation, and revision planning.</b>
-</p>
-
-<p align="center">
-  <a href="#-quick-copy">Quick Copy</a> ·
-  <a href="#-what-it-does">What it does</a> ·
-  <a href="#-workflow">Workflow</a> ·
-  <a href="#-prompt-files">Prompt files</a> ·
-  <a href="#-disclaimer">Disclaimer</a>
-</p>
-
-<p align="center">
-  <img alt="Prompt" src="https://img.shields.io/badge/type-prompt-blue">
-  <img alt="Unofficial" src="https://img.shields.io/badge/AAAI--style-unofficial-orange">
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-green">
-  <img alt="Language" src="https://img.shields.io/badge/language-ZH%20%7C%20EN-lightgrey">
-</p>
-
----
-
-## 中文简介
-
-**AAAI-Review-Simulator** 是一个非官方的 AAAI-style 论文模拟审稿 Prompt。它用于在投稿前对 AI / CS 论文做严格自查：让模型模拟多位 reviewer 和 SPC/AC-style meta-reviewer，从 **技术可靠性、实验与可复现性、创新性与相关工作、写作结构与合规风险** 四个角度给出接近真实审稿语气的批评。
-
-它的目标不是“鼓励你投稿”，而是帮助你提前发现：
-
-- 论文是否只是看起来完整，但达不到 AAAI Main Track 标准；
-- 哪些问题是 **Fatal issues**，不修大概率被拒；
-- 哪些问题是 **Major issues**，会明显拉低评分；
-- 哪些问题只是 **Minor issues**，可以最后修；
-- 7 天内应该优先补什么实验、重写哪一节、降低哪些 claim。
-
-> **Important:** This project is unofficial and is not affiliated with AAAI. It is only for paper self-assessment and revision planning.
-
----
-
-## 🚀 Quick Copy
-
-下面这几个区域可以直接复制。打开折叠区后，复制代码块里的完整 prompt 即可。GitHub 对 Markdown 支持 fenced code blocks；代码块会保持格式，适合放完整 prompt。
-
-### Option A — 中文精简版，快速自查
-
-适合：你只想快速判断论文大概是 5 分、6 分还是 7 分，不想等太长输出。
-
-<details open>
-<summary><b>📋 Click to expand and copy: Compact Chinese Prompt</b></summary>
-
-```text
-# AAAI-style 模拟审稿 Prompt（精简版｜中文）
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AAAI-Review-Simulator | Copy Prompts</title>
+<style>
+:root { --bg: #0d1117; --panel: #161b22; --text: #e6edf3; --muted: #8b949e; --accent: #2f81f7; --border: #30363d; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); }
+header { padding: 48px 24px 24px; text-align: center; border-bottom: 1px solid var(--border); }
+h1 { margin: 0 0 10px; font-size: 36px; }
+p { color: var(--muted); line-height: 1.6; }
+main { max-width: 1100px; margin: 0 auto; padding: 32px 20px 80px; }
+.card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; margin: 20px 0; overflow: hidden; }
+.card-header { display:flex; gap: 12px; align-items:center; justify-content:space-between; padding: 16px 18px; border-bottom: 1px solid var(--border); }
+.card-header h2 { margin: 0; font-size: 20px; }
+button { border: 0; border-radius: 8px; background: var(--accent); color: white; padding: 10px 14px; font-weight: 700; cursor: pointer; }
+button:hover { filter: brightness(1.1); }
+textarea { width: 100%; height: 420px; padding: 16px; border: 0; outline: none; resize: vertical; background: #010409; color: var(--text); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.5; }
+.badge { color: var(--muted); font-size: 13px; }
+.notice { border: 1px solid var(--border); border-radius: 12px; padding: 16px; background: #0b1320; }
+footer { text-align: center; padding: 24px; border-top: 1px solid var(--border); color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>AAAI-Review-Simulator</h1>
+  <p>Button-style copy page for the unofficial AAAI-style review prompts.</p>
+</header>
+<main>
+  <div class="notice">
+    <b>How to use:</b> choose a prompt, click <b>Copy Prompt</b>, paste it into your LLM chat after uploading your paper. This project is unofficial and is not affiliated with AAAI.
+  </div>
+  <section class="card">
+  <div class="card-header">
+    <div>
+      <h2>中文精简版 / Compact Chinese Prompt</h2>
+      <div class="badge">Fast self-check before deeper revision.</div>
+    </div>
+    <button onclick="copyPrompt('compact-zh')">Copy Prompt</button>
+  </div>
+  <textarea id="compact-zh" spellcheck="false"># AAAI-style 模拟审稿 Prompt（精简版｜中文）
 
 你将模拟一个**非官方 AAAI-style 论文审稿小组**。你的任务是帮助作者在投稿前严格识别论文风险，而不是鼓励投稿、润色文章或预测真实录用结果。
 
@@ -67,9 +58,9 @@
 请模拟 4 位 reviewer 和 1 位 SPC/AC-style meta-reviewer：
 
 - **Reviewer 1 — Technical Soundness**：问题定义、方法闭合性、算法/公式/系统设计、假设、复现细节。
-- **Reviewer 2 — Experiments & Reproducibility**：baseline、数据集、指标、公平性、ablation、多次运行、方差、显著性、seed、超参、硬件、失败案例。
-- **Reviewer 3 — Novelty, Significance & Related Work**：核心创新、与已有工作的区别、是否 incremental、社区贡献、漏引方向。
-- **Reviewer 4 — Writing, Structure & Compliance**：题目/摘要/正文一致性、结构、图表、claim、AI 味表达、双盲、页数、reproducibility checklist、ethics/limitations。
+- **Reviewer 2 — Experiments &amp; Reproducibility**：baseline、数据集、指标、公平性、ablation、多次运行、方差、显著性、seed、超参、硬件、失败案例。
+- **Reviewer 3 — Novelty, Significance &amp; Related Work**：核心创新、与已有工作的区别、是否 incremental、社区贡献、漏引方向。
+- **Reviewer 4 — Writing, Structure &amp; Compliance**：题目/摘要/正文一致性、结构、图表、claim、AI 味表达、双盲、页数、reproducibility checklist、ethics/limitations。
 - **SPC/AC Meta-reviewer**：综合判断是否有 champion、是否有 strong reject、rebuttal 是否能解决、当前投稿风险和最终建议。
 
 ## Rating Calibration
@@ -115,7 +106,7 @@ Confidence: X / 5
 ### Why Not Higher?
 ### Why Not Lower?
 
-## 3. Reviewer 2 — Experiments & Reproducibility
+## 3. Reviewer 2 — Experiments &amp; Reproducibility
 ### Summary
 ### Strengths
 ### Weaknesses
@@ -133,7 +124,7 @@ Confidence: X / 5
 ### Why Not Higher?
 ### Why Not Lower?
 
-## 4. Reviewer 3 — Novelty, Significance & Related Work
+## 4. Reviewer 3 — Novelty, Significance &amp; Related Work
 ### Summary
 ### Strengths
 ### Weaknesses
@@ -152,7 +143,7 @@ Confidence: X / 5
 ### Why Not Higher?
 ### Why Not Lower?
 
-## 5. Reviewer 4 — Writing, Structure & Compliance
+## 5. Reviewer 4 — Writing, Structure &amp; Compliance
 ### Summary
 ### Strengths
 ### Weaknesses
@@ -177,9 +168,9 @@ Confidence: X / 5
 | Reviewer | Role | Rating / 10 | Confidence / 5 | Main Positive | Main Negative |
 |---|---|---:|---:|---|---|
 | R1 | Technical Soundness | | | | |
-| R2 | Experiments & Reproducibility | | | | |
-| R3 | Novelty & Related Work | | | | |
-| R4 | Writing & Compliance | | | | |
+| R2 | Experiments &amp; Reproducibility | | | | |
+| R3 | Novelty &amp; Related Work | | | | |
+| R4 | Writing &amp; Compliance | | | | |
 
 计算 Average / Median / Lowest / Highest Rating，并判断是否有 clear champion 或 strong reject voice。
 
@@ -225,23 +216,20 @@ Day 7:
 8. 是否建议拆成 main paper + appendix？
 9. 是否建议继续投 AAAI，还是改投其他会议/期刊？
 
-请保持严格、直接、具体。不要安慰作者。不要泛泛而谈。
-```
+请保持严格、直接、具体。不要安慰作者。不要泛泛而谈。</textarea>
+</section>
+  <section class="card">
+  <div class="card-header">
+    <div>
+      <h2>中文完整版 / Full Chinese Prompt</h2>
+      <div class="badge">Recommended before serious AAAI-style submission check.</div>
+    </div>
+    <button onclick="copyPrompt('full-zh')">Copy Prompt</button>
+  </div>
+  <textarea id="full-zh" spellcheck="false"># AAAI-style 模拟审稿 Prompt（完整版｜中文）
 
-</details>
-
-### Option B — 中文完整版，正式投稿前使用
-
-适合：AAAI / IJCAI / NeurIPS / ICLR / ACL / EMNLP / ICRA / IROS 等投稿前，做一次严格大检查。
-
-<details>
-<summary><b>📋 Click to expand and copy: Full Chinese Prompt</b></summary>
-
-```text
-# AAAI-style 模拟审稿 Prompt（完整版｜中文）
-
-> 用途：投稿前自查、弱点定位、修改优先级规划。  
-> 状态：非官方工具；不隶属于 AAAI；不代表真实录用概率。
+&gt; 用途：投稿前自查、弱点定位、修改优先级规划。  
+&gt; 状态：非官方工具；不隶属于 AAAI；不代表真实录用概率。
 
 ## 使用前说明
 
@@ -299,7 +287,7 @@ Reviewer 1 — Technical Soundness Reviewer
 - 是否存在理论、算法、系统设计上的硬伤。  
   
 ============================================================  
-Reviewer 2 — Experiments & Reproducibility Reviewer  
+Reviewer 2 — Experiments &amp; Reproducibility Reviewer  
 ============================================================  
   
 重点检查：  
@@ -315,7 +303,7 @@ Reviewer 2 — Experiments & Reproducibility Reviewer
 - 是否存在实验数量不足但 claim 很大的问题。  
   
 ============================================================  
-Reviewer 3 — Novelty, Significance & Related Work Reviewer  
+Reviewer 3 — Novelty, Significance &amp; Related Work Reviewer  
 ============================================================  
   
 重点检查：  
@@ -329,7 +317,7 @@ Reviewer 3 — Novelty, Significance & Related Work Reviewer
 - 论文对社区是否有足够 significance。  
   
 ============================================================  
-Reviewer 4 — Writing, Structure & AAAI Compliance Reviewer  
+Reviewer 4 — Writing, Structure &amp; AAAI Compliance Reviewer  
 ============================================================  
   
 重点检查：  
@@ -475,7 +463,7 @@ Confidence: X / 5
 ### Why Not Lower?  
 解释为什么没有给更低分。  
   
-## 3. Reviewer 2 — Experiments & Reproducibility  
+## 3. Reviewer 2 — Experiments &amp; Reproducibility  
   
 按以下格式输出：  
   
@@ -513,7 +501,7 @@ Confidence: X / 5
 ### Why Not Higher?  
 ### Why Not Lower?  
   
-## 4. Reviewer 3 — Novelty, Significance & Related Work  
+## 4. Reviewer 3 — Novelty, Significance &amp; Related Work  
   
 按以下格式输出：  
   
@@ -549,7 +537,7 @@ Confidence: X / 5
 ### Why Not Higher?  
 ### Why Not Lower?  
   
-## 5. Reviewer 4 — Writing, Structure & AAAI Compliance  
+## 5. Reviewer 4 — Writing, Structure &amp; AAAI Compliance  
   
 按以下格式输出：  
   
@@ -606,9 +594,9 @@ Confidence: X / 5
 | Reviewer | Role | Rating / 10 | Confidence / 5 | Main Positive | Main Negative |  
 |---|---|---:|---:|---|---|  
 | R1 | Technical Soundness | | | | |  
-| R2 | Experiments & Reproducibility | | | | |  
-| R3 | Novelty & Related Work | | | | |  
-| R4 | Writing & Compliance | | | | |  
+| R2 | Experiments &amp; Reproducibility | | | | |  
+| R3 | Novelty &amp; Related Work | | | | |  
+| R4 | Writing &amp; Compliance | | | | |  
   
 然后计算：  
 - Average Rating；  
@@ -671,7 +659,7 @@ Confidence: X / 5
 75–84 = 有机会，但需要针对性修补  
 65–74 = Borderline，结构性问题明显  
 50–64 = 大概率被拒，需要大修  
-<50 = 不建议当前版本投稿  
+&lt;50 = 不建议当前版本投稿  
   
 请给出具体分数：XX / 100  
   
@@ -714,23 +702,20 @@ Day 7:
 8. 是否建议拆成 main paper + appendix？  
 9. 是否建议继续投 AAAI，还是改投其他会议/期刊？  
   
-请保持严格、直接、具体。不要安慰作者。不要泛泛而谈。所有评价都必须服务于判断这篇论文是否达到 AAAI Main Track 接收标准。
-```
+请保持严格、直接、具体。不要安慰作者。不要泛泛而谈。所有评价都必须服务于判断这篇论文是否达到 AAAI Main Track 接收标准。</textarea>
+</section>
+  <section class="card">
+  <div class="card-header">
+    <div>
+      <h2>English Full Prompt</h2>
+      <div class="badge">For English workflows.</div>
+    </div>
+    <button onclick="copyPrompt('full-en')">Copy Prompt</button>
+  </div>
+  <textarea id="full-en" spellcheck="false"># AAAI-style Simulated Review Prompt (Full Version | English)
 
-</details>
-
-### Option C — English full version
-
-For English users or English-only workflows.
-
-<details>
-<summary><b>📋 Click to expand and copy: Full English Prompt</b></summary>
-
-```text
-# AAAI-style Simulated Review Prompt (Full Version | English)
-
-> Purpose: pre-submission self-assessment, weakness discovery, and revision planning.  
-> Status: unofficial; not affiliated with AAAI; not a prediction of actual acceptance.
+&gt; Purpose: pre-submission self-assessment, weakness discovery, and revision planning.  
+&gt; Status: unofficial; not affiliated with AAAI; not a prediction of actual acceptance.
 
 You are simulating an **unofficial AAAI-style peer-review panel**. Your goal is to help authors identify serious weaknesses before submission. This is not an official AAAI review, not an acceptance predictor, and not a substitute for expert human judgment.
 
@@ -751,13 +736,13 @@ Simulate the following 4 reviewers and 1 SPC/AC-style meta-reviewer.
 ### Reviewer 1 — Technical Soundness
 Focus on problem definition, technical validity, algorithmic consistency, assumptions, system design, reproducibility of the method, missing implementation details, and whether the method is only a combination of known techniques.
 
-### Reviewer 2 — Experiments & Reproducibility
+### Reviewer 2 — Experiments &amp; Reproducibility
 Focus on baselines, SOTA comparisons, fairness, datasets, metrics, ablations, repeated runs, variance, confidence intervals, statistical significance, seeds, hyperparameters, hardware/software environment, failure cases, robustness, OOD generalization, and whether the experiments support the claims.
 
-### Reviewer 3 — Novelty, Significance & Related Work
+### Reviewer 3 — Novelty, Significance &amp; Related Work
 Focus on the core innovation, distinction from prior work, whether the contribution is incremental, missing related-work directions, and significance for the AAAI community.
 
-### Reviewer 4 — Writing, Structure & Compliance
+### Reviewer 4 — Writing, Structure &amp; Compliance
 Focus on title/abstract/main-paper consistency, structure, figures, tables, algorithms, overclaiming, AI-generated writing patterns, double-blind risks, page-limit risks, appendix use, reproducibility checklist, ethics statement, limitations, and citation style.
 
 ### SPC/AC-style Meta-reviewer
@@ -811,7 +796,7 @@ Confidence: X / 5
 ### Why Not Higher?
 ### Why Not Lower?
 
-## 3. Reviewer 2 — Experiments & Reproducibility
+## 3. Reviewer 2 — Experiments &amp; Reproducibility
 ### Summary
 ### Strengths
 ### Weaknesses
@@ -829,7 +814,7 @@ Confidence: X / 5
 ### Why Not Higher?
 ### Why Not Lower?
 
-## 4. Reviewer 3 — Novelty, Significance & Related Work
+## 4. Reviewer 3 — Novelty, Significance &amp; Related Work
 ### Summary
 ### Strengths
 ### Weaknesses
@@ -848,7 +833,7 @@ Confidence: X / 5
 ### Why Not Higher?
 ### Why Not Lower?
 
-## 5. Reviewer 4 — Writing, Structure & Compliance
+## 5. Reviewer 4 — Writing, Structure &amp; Compliance
 ### Summary
 ### Strengths
 ### Weaknesses
@@ -873,9 +858,9 @@ Confidence: X / 5
 | Reviewer | Role | Rating / 10 | Confidence / 5 | Main Positive | Main Negative |
 |---|---|---:|---:|---|---|
 | R1 | Technical Soundness | | | | |
-| R2 | Experiments & Reproducibility | | | | |
-| R3 | Novelty & Related Work | | | | |
-| R4 | Writing & Compliance | | | | |
+| R2 | Experiments &amp; Reproducibility | | | | |
+| R3 | Novelty &amp; Related Work | | | | |
+| R4 | Writing &amp; Compliance | | | | |
 
 Then compute Average Rating, Median Rating, Lowest Rating, Highest Rating, whether there is a clear champion, and whether there is a strong reject voice.
 
@@ -922,137 +907,26 @@ Answer directly:
 8. Should the paper be split into main paper + appendix?
 9. Should the authors continue targeting AAAI or redirect to another venue?
 
-Be strict, direct, and specific. Do not comfort the authors. Avoid generic comments.
-```
-
-</details>
-
-### Button-style copy page
-
-If you want a real web page with **Copy Prompt** buttons, open:
-
-```text
-/docs/index.html
-```
-
-You can open it locally after downloading the repository, or enable GitHub Pages from the `docs/` folder.
-
----
-
-## 🔍 What it does
-
-| Module | What it checks | Why it matters |
-|---|---|---|
-| Reviewer 1 | Technical soundness, problem definition, algorithmic closure, assumptions | Finds structural method flaws |
-| Reviewer 2 | Baselines, ablations, statistics, reproducibility, robustness | Finds experiment weaknesses |
-| Reviewer 3 | Novelty, significance, related work positioning | Finds incremental or weak contribution risk |
-| Reviewer 4 | Writing, structure, title/abstract consistency, compliance | Finds presentation and submission risks |
-| SPC/AC-style Meta-reviewer | Consensus, champion/strong reject, rebuttal potential, final readiness | Simulates decision-level judgment |
-
----
-
-## 🧭 Workflow
-
-```mermaid
-flowchart LR
-    A[Upload paper / LaTeX / tables] --> B[Copy one prompt]
-    B --> C[Run simulated review]
-    C --> D[Read Fatal / Major / Minor issues]
-    D --> E[Follow P0 / P1 / P2 revision plan]
-    E --> F[Revise paper]
-    F --> G[Run again before submission]
-```
-
----
-
-## 📁 Prompt files
-
-| File | Use case |
-|---|---|
-| `prompts/aaai_review_full_zh.md` | 中文完整版，推荐正式自查 |
-| `prompts/aaai_review_compact_zh.md` | 中文精简版，适合快速评审 |
-| `prompts/aaai_review_full_en.md` | English full version |
-| `COPY_PROMPTS.md` | All prompts in copy-ready code blocks |
-| `docs/index.html` | Button-style copy page |
-| `docs/usage_zh.md` | 中文使用说明 |
-| `docs/ethics.md` | 使用边界与伦理说明 |
-| `docs/limitations.md` | 局限性说明 |
-| `examples/example_input.md` | 输入示例 |
-
----
-
-## ✅ Recommended use
-
-1. Upload the full paper PDF or LaTeX source to your LLM.
-2. Add supplementary material, experiment tables, checklist, or rebuttal draft if available.
-3. Copy the **Full Chinese Prompt** or **Full English Prompt** from this README.
-4. Ask the model to follow the output format strictly.
-5. Fix P0 issues first, then P1, then P2.
-6. Run the prompt again after revision and compare score movement.
-
----
-
-## 🧪 Example input
-
-```text
-Please strictly review the attached paper using the AAAI-style review simulator prompt.
-Target venue: AAAI Main Technical Track.
-Uploaded material:
-- Main paper PDF
-- Supplementary material
-- Experiment tables
-- Reproducibility checklist
-
-Focus especially on novelty, baseline fairness, ablation strength, and whether the main claims are fully supported.
-```
-
----
-
-## ⚠️ Important limitations
-
-This prompt cannot replace real expert review. It may still miss technical flaws, overestimate or underestimate novelty, or fail to identify missing related work if no literature search is available.
-
-To reduce hallucination risk, the prompt explicitly requires:
-
-- no invented evidence;
-- no invented page, table, figure, or section references;
-- no fabricated citations;
-- no fabricated AAAI policy details;
-- explicit use of “Not sufficiently specified in the provided material” when information is missing.
-
----
-
-## 🧑‍⚖️ Ethics and review-system safety
-
-This project is intended for:
-
-- author self-assessment;
-- revision planning;
-- research training;
-- simulated peer-review education.
-
-It must not be used to:
-
-- impersonate real reviewers;
-- manipulate, attack, or bypass real peer-review systems;
-- generate fake reviews for submission platforms;
-- fabricate citations, experiments, or acceptance probabilities;
-- claim affiliation with AAAI or any official conference committee.
-
----
-
-## 🇬🇧 English summary
-
-**AAAI-Review-Simulator** is an unofficial AAAI-style prompt for strict paper self-assessment. It simulates four reviewers and an SPC/AC-style meta-reviewer to identify technical, experimental, novelty, writing, and compliance risks before submission.
-
-Use the copy-ready prompt blocks above, or open `COPY_PROMPTS.md` for all prompts in one place.
-
----
-
-## 📜 License
-
-MIT License. See [LICENSE](LICENSE).
-
-## 🙏 Citation / attribution
-
-If this prompt helps your paper revision workflow, a star or citation to this repository is appreciated.
+Be strict, direct, and specific. Do not comfort the authors. Avoid generic comments.</textarea>
+</section>
+</main>
+<footer>MIT License · Unofficial AAAI-style self-assessment prompt</footer>
+<script>
+async function copyPrompt(id) {
+  const el = document.getElementById(id);
+  el.focus();
+  el.select();
+  try {
+    await navigator.clipboard.writeText(el.value);
+    const btn = event.target;
+    const old = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = old, 1200);
+  } catch (err) {
+    document.execCommand('copy');
+    alert('Copied.');
+  }
+}
+</script>
+</body>
+</html>

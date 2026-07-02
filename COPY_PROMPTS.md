@@ -1,52 +1,8 @@
-<h1 align="center">AAAI-Review-Simulator</h1>
+# Copy Prompts
 
-<p align="center">
-  <b>Unofficial AAAI-style multi-reviewer prompt for strict paper self-assessment, meta-review simulation, and revision planning.</b>
-</p>
+This file contains all prompts in copy-ready fenced code blocks.
 
-<p align="center">
-  <a href="#-quick-copy">Quick Copy</a> ·
-  <a href="#-what-it-does">What it does</a> ·
-  <a href="#-workflow">Workflow</a> ·
-  <a href="#-prompt-files">Prompt files</a> ·
-  <a href="#-disclaimer">Disclaimer</a>
-</p>
-
-<p align="center">
-  <img alt="Prompt" src="https://img.shields.io/badge/type-prompt-blue">
-  <img alt="Unofficial" src="https://img.shields.io/badge/AAAI--style-unofficial-orange">
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-green">
-  <img alt="Language" src="https://img.shields.io/badge/language-ZH%20%7C%20EN-lightgrey">
-</p>
-
----
-
-## 中文简介
-
-**AAAI-Review-Simulator** 是一个非官方的 AAAI-style 论文模拟审稿 Prompt。它用于在投稿前对 AI / CS 论文做严格自查：让模型模拟多位 reviewer 和 SPC/AC-style meta-reviewer，从 **技术可靠性、实验与可复现性、创新性与相关工作、写作结构与合规风险** 四个角度给出接近真实审稿语气的批评。
-
-它的目标不是“鼓励你投稿”，而是帮助你提前发现：
-
-- 论文是否只是看起来完整，但达不到 AAAI Main Track 标准；
-- 哪些问题是 **Fatal issues**，不修大概率被拒；
-- 哪些问题是 **Major issues**，会明显拉低评分；
-- 哪些问题只是 **Minor issues**，可以最后修；
-- 7 天内应该优先补什么实验、重写哪一节、降低哪些 claim。
-
-> **Important:** This project is unofficial and is not affiliated with AAAI. It is only for paper self-assessment and revision planning.
-
----
-
-## 🚀 Quick Copy
-
-下面这几个区域可以直接复制。打开折叠区后，复制代码块里的完整 prompt 即可。GitHub 对 Markdown 支持 fenced code blocks；代码块会保持格式，适合放完整 prompt。
-
-### Option A — 中文精简版，快速自查
-
-适合：你只想快速判断论文大概是 5 分、6 分还是 7 分，不想等太长输出。
-
-<details open>
-<summary><b>📋 Click to expand and copy: Compact Chinese Prompt</b></summary>
+## 1. 中文精简版 / Compact Chinese Prompt
 
 ```text
 # AAAI-style 模拟审稿 Prompt（精简版｜中文）
@@ -228,14 +184,9 @@ Day 7:
 请保持严格、直接、具体。不要安慰作者。不要泛泛而谈。
 ```
 
-</details>
+---
 
-### Option B — 中文完整版，正式投稿前使用
-
-适合：AAAI / IJCAI / NeurIPS / ICLR / ACL / EMNLP / ICRA / IROS 等投稿前，做一次严格大检查。
-
-<details>
-<summary><b>📋 Click to expand and copy: Full Chinese Prompt</b></summary>
+## 2. 中文完整版 / Full Chinese Prompt
 
 ```text
 # AAAI-style 模拟审稿 Prompt（完整版｜中文）
@@ -717,14 +668,9 @@ Day 7:
 请保持严格、直接、具体。不要安慰作者。不要泛泛而谈。所有评价都必须服务于判断这篇论文是否达到 AAAI Main Track 接收标准。
 ```
 
-</details>
+---
 
-### Option C — English full version
-
-For English users or English-only workflows.
-
-<details>
-<summary><b>📋 Click to expand and copy: Full English Prompt</b></summary>
+## 3. English Full Prompt
 
 ```text
 # AAAI-style Simulated Review Prompt (Full Version | English)
@@ -924,135 +870,3 @@ Answer directly:
 
 Be strict, direct, and specific. Do not comfort the authors. Avoid generic comments.
 ```
-
-</details>
-
-### Button-style copy page
-
-If you want a real web page with **Copy Prompt** buttons, open:
-
-```text
-/docs/index.html
-```
-
-You can open it locally after downloading the repository, or enable GitHub Pages from the `docs/` folder.
-
----
-
-## 🔍 What it does
-
-| Module | What it checks | Why it matters |
-|---|---|---|
-| Reviewer 1 | Technical soundness, problem definition, algorithmic closure, assumptions | Finds structural method flaws |
-| Reviewer 2 | Baselines, ablations, statistics, reproducibility, robustness | Finds experiment weaknesses |
-| Reviewer 3 | Novelty, significance, related work positioning | Finds incremental or weak contribution risk |
-| Reviewer 4 | Writing, structure, title/abstract consistency, compliance | Finds presentation and submission risks |
-| SPC/AC-style Meta-reviewer | Consensus, champion/strong reject, rebuttal potential, final readiness | Simulates decision-level judgment |
-
----
-
-## 🧭 Workflow
-
-```mermaid
-flowchart LR
-    A[Upload paper / LaTeX / tables] --> B[Copy one prompt]
-    B --> C[Run simulated review]
-    C --> D[Read Fatal / Major / Minor issues]
-    D --> E[Follow P0 / P1 / P2 revision plan]
-    E --> F[Revise paper]
-    F --> G[Run again before submission]
-```
-
----
-
-## 📁 Prompt files
-
-| File | Use case |
-|---|---|
-| `prompts/aaai_review_full_zh.md` | 中文完整版，推荐正式自查 |
-| `prompts/aaai_review_compact_zh.md` | 中文精简版，适合快速评审 |
-| `prompts/aaai_review_full_en.md` | English full version |
-| `COPY_PROMPTS.md` | All prompts in copy-ready code blocks |
-| `docs/index.html` | Button-style copy page |
-| `docs/usage_zh.md` | 中文使用说明 |
-| `docs/ethics.md` | 使用边界与伦理说明 |
-| `docs/limitations.md` | 局限性说明 |
-| `examples/example_input.md` | 输入示例 |
-
----
-
-## ✅ Recommended use
-
-1. Upload the full paper PDF or LaTeX source to your LLM.
-2. Add supplementary material, experiment tables, checklist, or rebuttal draft if available.
-3. Copy the **Full Chinese Prompt** or **Full English Prompt** from this README.
-4. Ask the model to follow the output format strictly.
-5. Fix P0 issues first, then P1, then P2.
-6. Run the prompt again after revision and compare score movement.
-
----
-
-## 🧪 Example input
-
-```text
-Please strictly review the attached paper using the AAAI-style review simulator prompt.
-Target venue: AAAI Main Technical Track.
-Uploaded material:
-- Main paper PDF
-- Supplementary material
-- Experiment tables
-- Reproducibility checklist
-
-Focus especially on novelty, baseline fairness, ablation strength, and whether the main claims are fully supported.
-```
-
----
-
-## ⚠️ Important limitations
-
-This prompt cannot replace real expert review. It may still miss technical flaws, overestimate or underestimate novelty, or fail to identify missing related work if no literature search is available.
-
-To reduce hallucination risk, the prompt explicitly requires:
-
-- no invented evidence;
-- no invented page, table, figure, or section references;
-- no fabricated citations;
-- no fabricated AAAI policy details;
-- explicit use of “Not sufficiently specified in the provided material” when information is missing.
-
----
-
-## 🧑‍⚖️ Ethics and review-system safety
-
-This project is intended for:
-
-- author self-assessment;
-- revision planning;
-- research training;
-- simulated peer-review education.
-
-It must not be used to:
-
-- impersonate real reviewers;
-- manipulate, attack, or bypass real peer-review systems;
-- generate fake reviews for submission platforms;
-- fabricate citations, experiments, or acceptance probabilities;
-- claim affiliation with AAAI or any official conference committee.
-
----
-
-## 🇬🇧 English summary
-
-**AAAI-Review-Simulator** is an unofficial AAAI-style prompt for strict paper self-assessment. It simulates four reviewers and an SPC/AC-style meta-reviewer to identify technical, experimental, novelty, writing, and compliance risks before submission.
-
-Use the copy-ready prompt blocks above, or open `COPY_PROMPTS.md` for all prompts in one place.
-
----
-
-## 📜 License
-
-MIT License. See [LICENSE](LICENSE).
-
-## 🙏 Citation / attribution
-
-If this prompt helps your paper revision workflow, a star or citation to this repository is appreciated.
